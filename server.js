@@ -1,15 +1,14 @@
 require('dotenv').config()
-import sslRedirect from 'heroku-ssl-redirect'
 const express = require("express")
 const http = require("http")
 const mongoose = require("mongoose")
+const uri = process.env.MONGODB_URI
 const Article = require("./models/article")
 const articleRouter = require("./routes/articles")
 const methodOverride = require("method-override")
 const app = express()
-app.use(sslRedirect());
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blog")
+mongoose.connect(uri || "mongodb://localhost/blog")
 
 app.set("view engine", "ejs")
 app.use(express.urlencoded({ extended: false }))
