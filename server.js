@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const uri = process.env.MONGODB_URI
 const Article = require("./models/article")
 const articleRouter = require("./routes/articles")
+const loginRouter = require("./routes/login")
 const methodOverride = require("method-override")
 const app = express()
 
@@ -20,5 +21,5 @@ app.get("/", async (req, res) => {
 })
 
 app.use("/articles", articleRouter)
-app.use("/login", articleRouter)
+app.use("/login", loginRouter)
 app.listen(process.env.PORT || 3000)
